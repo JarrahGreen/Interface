@@ -4,14 +4,7 @@
 #include <errno.h>
 
 
-int main() {
-    char Username[20];
-    char Password[20];
-
-    // Login
-    printf("Username: ");
-    fgets((char *) &Username, sizeof(Username), stdin);
-
+int login(char* username) {
     // Open file
     FILE *database = fopen("C:\\Users\\22000773\\CLionProjects\\Interface\\database.txt", "r");
     //Error check file
@@ -22,26 +15,25 @@ int main() {
 
     //Read through file
     char checkUsername[100];
-    char* result;
+    char *result;
     do {
         result = fgets(checkUsername, sizeof checkUsername, database);
-    } while(strcmp(Username, checkUsername) != 0 && result != NULL);
-    if (strcmp(checkUsername, Username) == 0) {
-        printf("in database");
-    } else {
-        printf("not in database");
+    } while (strcmp(username, checkUsername) != 0 && result != NULL);
+    fclose(database);
+    if (strcmp(checkUsername, username) == 0) {
+        printf("Login Success");
+        return 0;
     }
+    printf("Login Failure");
+    return 1;
+}
 
-
-
-// Create a login
-/*
+int createUser(char* username) {
     printf("Hello,\n Welcome to ____ please create a Username: \n");
-    fgets((char *) &Username, sizeof(Username), stdin);
+    fgets(username, sizeof(username), stdin);
 
 
-    FILE *database;
-    database = fopen("C:\\Users\\22000773\\CLionProjects\\Interface\\database.txt", "a");
+    FILE* database = fopen("C:\\Users\\22000773\\CLionProjects\\Interface\\database.txt", "a");
 
     // test for files not existing.
     if (database == NULL) {
@@ -49,22 +41,30 @@ int main() {
         exit(-1);
     }
     // write to file vs write to screen
-    fprintf(database, "%s\n", Username); // write to file
+    fprintf(database, "%s\n", username); // write to file
     fclose(database);
 }
 
+int main() {
+
+    char Username[20];
+    char Password[20];
 
 
 
+    // Login
+    printf("Menu\n"
+                "1: Login\n"
+                "2: Create user\n"
+                "> ");
+    char input[2];
+    fgets(input, sizeof(input), stdin);
 
+    fgets(Username, sizeof(Username), stdin);
+    if (login(Username) == 0) {
+        printf("User does not exist, would you like to create it?: (y/N)");
+    }
 
-    database = fopen("database.txt");
-    char output[100];
-    fgets(output, 100, database);
-    printf("%s", output);
-    fclose(output);
+// Create a login
 
-
-
-*/
 }

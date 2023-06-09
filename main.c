@@ -41,6 +41,7 @@ int login(char* username) {
     return 1;
 }
 
+
 int createUser(char* username) {
     printf("Hello,\n Welcome to ____ please create a Username: \n");
     fgets(username, sizeof(username), stdin);
@@ -70,13 +71,25 @@ int main() {
                 "1: Login\n"
                 "2: Create user\n"
                 "> ");
-    char input[2];
-    fgets(input, sizeof(input), stdin);
+    char Menu[2];
+    fgets(Menu, sizeof(Menu), stdin);
 
-    fgets(Username, sizeof(Username), stdin);
-    if (login(Username) == 0) {
-        printf("User does not exist, would you like to create it?: (y/N)");
+
+    //Login
+    if (Menu[0] == '1') {
+        fgets(Username, sizeof(Username), stdin);
+        login(Username);
+        return 0;
     }
+    //Create new user
+    else {
+
+        fgets(Username, sizeof(Username), stdin);
+    }
+
+
+
+
 
 // Create a login
 

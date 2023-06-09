@@ -3,10 +3,23 @@
 #include <string.h>
 #include <errno.h>
 
+/*
+int main() {
+    // Open file
+    FILE *database = fopen("..\\database.txt", "r");
+    //Error check file
+    if (database == NULL) {
+        printf("Error! Could not open file\nError code: %d", errno);
+        exit(-1);
+    }
+}
+*/
+
+
 
 int login(char* username) {
     // Open file
-    FILE *database = fopen("C:\\Users\\22000773\\CLionProjects\\Interface\\database.txt", "r");
+    FILE *database = fopen("..\\database.txt", "r");
     //Error check file
     if (database == NULL) {
         printf("Error! Could not open file\nError code: %d", errno);
@@ -33,7 +46,7 @@ int createUser(char* username) {
     fgets(username, sizeof(username), stdin);
 
 
-    FILE* database = fopen("C:\\Users\\22000773\\CLionProjects\\Interface\\database.txt", "a");
+    FILE* database = fopen("..\\database.txt", "a");
 
     // test for files not existing.
     if (database == NULL) {
